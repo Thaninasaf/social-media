@@ -14,7 +14,7 @@ body {
 .container {
     margin: 0 auto;
     width: 750px;
-    background: #444753;
+    background: #dedefc;
     border-radius: 5px;
 }
 
@@ -65,7 +65,7 @@ body {
 }
 
 .people-list .status {
-    color: #92959E;
+    color: #e2e7f5;
 }
 
 .chat {

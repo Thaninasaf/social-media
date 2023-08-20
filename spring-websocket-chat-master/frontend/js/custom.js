@@ -36,9 +36,11 @@ function render(message, userName) {
     }.bind(this), 1500);
 }
 
+
+//////////////
 function sendMessage(message) {
-    let username = $('#userName').val();
-    console.log(username)
+    let username = $('#usernameDisplay').text(); // Récupérer le nom d'utilisateur à partir de l'affichage
+    console.log(username);
     sendMsg(username, message);
     scrollToBottom();
     if (message.trim() !== '') {
@@ -46,6 +48,7 @@ function sendMessage(message) {
         var context = {
             messageOutput: message,
             time: getCurrentTime(),
+            userName: username,
             toUserName: selectedUser
         };
 
@@ -54,6 +57,11 @@ function sendMessage(message) {
         $textarea.val('');
     }
 }
+
+
+
+
+///////////////
 
 function scrollToBottom() {
     $chatHistory.scrollTop($chatHistory[0].scrollHeight);

@@ -1,4 +1,4 @@
-const url = 'http://localhost:8082';
+const url = 'http://localhost:8080';
 let stompClient;
 let selectedUser;
 let newMessages = new Map();
@@ -27,8 +27,44 @@ function sendMsg(from, text) {
         message: text
     }));
 }
+////////////////////////////////////
+function useMessengerApp() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedUsername = urlParams.get('utilisateur');
+        const decodedUsername = decodeURIComponent(encodedUsername);
 
-function registration() {
+        // Assurez-vous que l'élément avec l'ID "usernameDisplay" existe dans votre HTML
+        const usernameDisplay = document.getElementById('usernameDisplay');
+        if (usernameDisplay) {
+            usernameDisplay.textContent = decodedUsername;
+            registration(decodedUsername); // Appel de la fonction registration avec le nom d'utilisateur
+        } else {
+            console.error('Element with ID "usernameDisplay" not found.');
+        }
+    });
+}
+   
+
+
+useMessengerApp();
+
+
+function registration(userName) {
+    $.get(url + "/registration/" + userName, function (response) {
+        connectToChat(userName);
+    }).fail(function (error) {
+        if (error.status === 400) {
+            alert("Login is already busy!")
+        }
+    });
+}
+
+//////////////////////////////////////////////
+
+
+
+/*function registration() {
     let userName = document.getElementById("userName").value;
     $.get(url + "/registration/" + userName, function (response) {
         connectToChat(userName);
@@ -37,7 +73,8 @@ function registration() {
             alert("Login is already busy!")
         }
     })
-}
+}*/
+
 
 function selectUser(userName) {
     console.log("selecting users: " + userName);
@@ -58,7 +95,7 @@ function fetchAll() {
         let usersTemplateHTML = "";
         for (let i = 0; i < users.length; i++) {
             usersTemplateHTML = usersTemplateHTML + '<a href="#" onclick="selectUser(\'' + users[i] + '\')"><li class="clearfix">\n' +
-                '                <img src="https://rtfm.co.ua/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" width="55px" height="55px" alt="avatar" />\n' +
+                '                <img src="../dp2.png" width="55px" height="55px" alt="avatar" />\n' +
                 '                <div class="about">\n' +
                 '                    <div id="userNameAppender_' + users[i] + '" class="name">' + users[i] + '</div>\n' +
                 '                    <div class="status">\n' +
