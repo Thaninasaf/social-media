@@ -108,6 +108,30 @@ class LoginHome extends Component {
         });
     }
 
+    ////////////////test
+    
+    sendDataToMicroservice2() {
+        const userData = JSON.parse(localStorage.getItem("user"));
+    
+        fetch('http://localhost:8082/api/sendData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log('Data sent successfully:', data);
+        })
+        .catch(error => {
+        console.error('Error sending data:', error);
+        });
+    }
+    
+    
+    ///////////////
+
 
      render() { 
         return ( 

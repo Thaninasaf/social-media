@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./RightSide.css";
 import ImageLayout from '../ImageLayout';
+import { Button } from '@mui/material';
 
 class RightSide extends Component {
     constructor(props) {
@@ -43,6 +44,8 @@ class RightSide extends Component {
         this.getData();
     }
 
+    
+
 
     render() { 
         return ( 
@@ -60,6 +63,7 @@ class RightSide extends Component {
 
                 </div>
             </div>
+           
          );
     }
 }

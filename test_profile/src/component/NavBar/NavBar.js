@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import "./NavBar.css";
 import { Grid } from '@mui/material'; 
-import fblogo from "../../images/logo.png";
 import home from "../../images/home.svg";
-import page from "../../images/pages.svg";
-import watch from "../../images/watch.svg";
-import market from "../../images/market.svg";
 import group from "../../images/groups.svg";
 import { Avatar } from '@mui/material';
 import {getImage} from "../../GetImage"
@@ -17,8 +13,11 @@ class NavBar extends Component {
             image : JSON.parse(localStorage.getItem("user")).userImage
         }
     }
+
+   
     
     render() { 
+        const utilisateur = JSON.parse(localStorage.getItem("user")).userName;
         return ( 
         <div>
             <Grid container spacing={3} className="navbar__main">
@@ -30,7 +29,7 @@ class NavBar extends Component {
             <Grid item xs ={6}>
                 <div className="navbar__container">
                     <div className="navbar__tabs active">
-                        <img src={home} height="30px" width="35px" />
+                        <img src={home} alt=""  height="30px" width="35px" />
                     </div>
                     <div className="navbar__tabs">
                         
@@ -39,10 +38,10 @@ class NavBar extends Component {
                        
                     </div>
                     <div className="navbar__tabs">
-                        
+                    <a href={`http://localhost:8081/?utilisateur=${encodeURIComponent(utilisateur)}`}>Messenger</a>
                     </div>
                     <div className="navbar__tabs">
-                        <img src={group} height="35px" width="35px" />
+                        <img src={group} alt="" height="35px" width="35px" />
                     </div>
                 </div>
             </Grid>
@@ -55,7 +54,7 @@ class NavBar extends Component {
                 </div>
             </Grid>
         </Grid>
-
+         
     </div> 
         );
     }
